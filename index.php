@@ -3,9 +3,11 @@
 
 include_once("common/System.php");
 
-if (!empty(@$_GET["url"])) {
+$page = @$_GET["url"];
+
+if (!empty($page)) {
      
-    switch ($sayfa) {
+    switch ($page) {
         case "home":
              System::route("Home","get");
         break;
