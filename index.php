@@ -2,9 +2,8 @@
 // Router
 
 include_once("common/System.php");
-$sayfa = @$_GET["url"];
 
-if (!empty($sayfa)) {
+if (!empty(@$_GET["url"])) {
      
     switch ($sayfa) {
         case "home":
