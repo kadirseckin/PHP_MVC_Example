@@ -19,7 +19,7 @@
 
 	        foreach ($products as $product) {
 	        	$categories[] = $this->categoryModel->
-	        		getCategoryNameByCategoryID($product['marka_id']);
+	        		getCategoryNameByCategoryID($product['category_id']);
 	        }
 
 	        $this->view->getPage("products.php",[$products,$categories]);

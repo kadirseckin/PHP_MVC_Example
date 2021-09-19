@@ -7,38 +7,38 @@ $sayfa = @$_GET["url"];
 if (!empty($sayfa)) {
      
     switch ($sayfa) {
-        case "anasayfa":
+        case "home":
              System::route("Home","get");
         break;
-        case "urunler":
+        case "products":
              System::route("Product","getProducts");
         break;
 
-        case "urunFiltre":
+        case "productsByCategory":
              System::route("Product","getProductsByCategory");
         break;
 
-        case "markalar":
+        case "categories":
             System:: route("Category","getCategories");
         break;
 
-        case "sepetEkle":
+        case "addToCart":
              System:: route("Cart","addToCart");
         break;
 
-        case "sepet":
+        case "cart":
              System:: route("Cart","getCart");
         break;
 
-        case "sepettenUrunSil":
+        case "removeFromCart":
              System:: route("Cart","removeProductFromCart");
         break;
 
-        case "sepetTemizle":
+        case "clearCart":
              System:: route("Cart","clearCart");
         break;
 
-        case "odemeTamamla":
+        case "completePayment":
              System:: route("Cart","completeThePayment");
         break;
         

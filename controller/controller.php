@@ -15,8 +15,8 @@ class Controller{
     }
 
     protected function redirectBack(){
-        $gelenUrl=$_SERVER['HTTP_REFERER'];
-        header("Location:$gelenUrl");
+        $url=$_SERVER['HTTP_REFERER'];
+        header("Location:$url");
     }
 
     public static function getCartCount(){

@@ -8,7 +8,7 @@ class Model{
 	 public function __construct(){
 	 	try {
 			$this->db=
-				new PDO("mysql:host=localhost;dbname=sonprojedb;charset=utf8","root","");
+				new PDO("mysql:host=localhost;dbname=oopmvcdb;charset=utf8","root","");
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}

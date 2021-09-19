@@ -1,29 +1,29 @@
 
 <br>
 <div class="container">
-	<h3>Anasayfa - Rastgele Ürünler</h3>
+	<h3>Homepage - Random Products</h3>
 	<hr>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Ad</th>
-      <th scope="col">Marka</th>
-      <th scope="col">Fiyat</th>
-      <th scope="col">Sepete ekle</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Add to Cart</th>
     </tr>
   </thead>
   <tbody>
-  	<?php foreach ($data[0] as $key => $urun) {
+  	<?php foreach ($data[0] as $key => $product) {
   	 ?>
     <tr>
-      <th><?php echo $urun['id']  ?></th>
-      <td><?php echo $urun['ad']  ?></td>
-      <td><?php echo $data[1][$key]['ad']  ?></td>
-      <td><?php echo $urun['fiyat']  ?></td>
+      <th><?php echo $product['id']  ?></th>
+      <td><?php echo $product['name']  ?></td>
+      <td><?php echo $data[1][$key]['name']  ?></td>
+      <td><?php echo "$".$product['price']  ?></td>
       <td>
-        <a href="index.php?url=sepetEkle&id=<?php echo $urun['id'] ?>">
-          <button class="btn btn-success">Sepete ekle</button>
+        <a href="index.php?url=addToCart&id=<?php echo $product['id'] ?>">
+          <button class="btn btn-success">Add to Cart</button>
         </a>
       </td>
     </tr>

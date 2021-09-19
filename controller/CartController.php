@@ -49,13 +49,13 @@
 	        $counts=array();
 	        if(!empty($_COOKIE['cart'])){
 	             foreach (@$_COOKIE['cart'] as $key => $value) {
-	                $products[]=$this->productModel->getUrun($key);   
+	                $products[]=$this->productModel->getProductByID($key);   
 	                $counts[]=$value; 
 	            }
 	        }
 	       
 	    
-	        $this->view->getPage("cart.php",[$products,$counts]);
+	        $this->view->getPage("cart.php",[$products,$counts,self::getTotalPrice()]);
 	    }
 
 	    public  function removeProductFromCart(){
@@ -79,14 +79,33 @@
 	    	
 	    	$cartLog="";
 
-	         foreach ($_COOKIE['cart'] as $key => $value) {
-	            $cartLog.=$key.":".$value.",";      
-	         }     
+	    	if(!empty($_COOKIE['cart'])){
+	    		
+	    		foreach (@$_COOKIE['cart'] as $key => $value) {
+	            	$cartLog.=$key.":".$value.",";      
+	        	}     
 	    
-	        $this->model->completeThePayment($cartLog);
-	       
-	       $this->clearCart();
-	       $this->redirectBack();
+		       $this->model->completeThePayment($cartLog,self::getTotalPrice());
+		       $this->clearCart();
+	    	}
+
+	    	$this->redirectBack();
+	        
+	    }
+
+	    private function getTotalPrice(){
+	    	$totalPrice=0;
+
+	    	if(!empty($_COOKIE['cart'])){
+	    		
+	    		foreach (@$_COOKIE['cart'] as $productId => $productCount) {
+	            	  $product=$this->productModel->getProductByID($productId);
+	            	  $price=$product['price'];
+	            	  $totalPrice+=($price*$productCount);
+	        	}     
+	    	}
+
+	    	return $totalPrice;
 	    }
 
 

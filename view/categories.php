@@ -1,26 +1,26 @@
 
 <br>
 <div class="container">
-	<h3>Markalar</h3>
+	<h3>Categories</h3>
 	<hr>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Ad</th>
-      <th scope="col">Ürünler</th>
+      <th scope="col">Name</th>
+      <th scope="col">Related Products</th>
   
     </tr>
   </thead>
   <tbody>
-  	<?php foreach ($data as $marka) {
+  	<?php foreach ($data as $category) {
   	 ?>
     <tr>
-      <th><?php echo $marka['id']  ?></th>
-      <td><?php echo $marka['ad']  ?> </td>
+      <th><?php echo $category['id']  ?></th>
+      <td><?php echo $category['name']  ?> </td>
        <td>
-        <a href="index.php?url=urunFiltre&id=<?php echo $marka['id'] ?>">
-          <button class="btn btn-primary">Ürünler</button>
+        <a href="index.php?url=productsByCategory&id=<?php echo $category['id'] ?>">
+          <button class="btn btn-primary">Related Products</button>
         </a>
       </td>
       
