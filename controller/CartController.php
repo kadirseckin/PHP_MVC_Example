@@ -50,8 +50,7 @@
 	        if(!empty($_COOKIE['cart'])){
 	             foreach (@$_COOKIE['cart'] as $key => $value) {
 	                $products[]=$this->productModel->getUrun($key);   
-	                $counts[]=$value;
-	             
+	                $counts[]=$value; 
 	            }
 	        }
 	       
@@ -90,15 +89,6 @@
 	       $this->redirectBack();
 	    }
 
-	    protected function getCartCount(){
-	    	$cartCounter=0;
-
-	    	foreach ($_COOKIE['cart'] as $value) {
-	            $cartCounter++;    
-	        }
-
-	        return $cartCounter;     
-	    }
 
 	}
  ?>

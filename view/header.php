@@ -18,7 +18,7 @@
 
       <li class="nav-item" style="margin-left: 50rem;">
         <a class="nav-link" href="index.php?url=sepet">Sepetim 
-          <span id="cartCount">(0)</span></a>
+          (<span id="cartCountSpan"><?php echo Controller::getCartCount() ?></span>)</a>
       </li>
     
   </div>

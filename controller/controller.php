@@ -18,6 +18,18 @@ class Controller{
         $gelenUrl=$_SERVER['HTTP_REFERER'];
         header("Location:$gelenUrl");
     }
+
+    public static function getCartCount(){
+        $cartCounter=0;
+
+        if(!empty($_COOKIE['cart'])){
+             foreach (@$_COOKIE['cart'] as $value) {
+                $cartCounter++;    
+            }
+        }
+
+        return $cartCounter;     
+    }
    
 }
 
