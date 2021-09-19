@@ -1,5 +1,5 @@
 <?php
-//controller
+//base controller
 
 include_once "view/view.php";
 include_once "model/model.php";
@@ -9,18 +9,12 @@ class Controller{
     protected $model;
     protected $view;
 
-    public function __construct($model=null){
-        if($model==null){
-            $this->model=new Model();
-        }else{
-            $this->model=new $model();
-        }
-        
-
+    public function __construct(){
+        $this->model=new Model();
         $this->view=new View();
     }
 
-    protected function geriDon(){
+    protected function redirectBack(){
         $gelenUrl=$_SERVER['HTTP_REFERER'];
         header("Location:$gelenUrl");
     }

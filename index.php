@@ -1,56 +1,55 @@
 <?php
-// Router Sayfası
+// Router
 
-include_once("system/functions.php");
-
+include_once("common/System.php");
 $sayfa = @$_GET["url"];
 
 if (!empty($sayfa)) {
-
+     
     switch ($sayfa) {
         case "anasayfa":
-             executeController("Home","anasayfa");
+             System::route("Home","get");
         break;
         case "urunler":
-             executeController("Product","urunler");
+             System::route("Product","getProducts");
         break;
 
         case "urunFiltre":
-             executeController("Product","urunFiltre");
+             System::route("Product","getProductsByCategory");
         break;
 
         case "markalar":
-             executeController("Category","markalar");
+            System:: route("Category","getCategories");
         break;
 
         case "sepetEkle":
-             executeController("Cart","sepetEkle");
+             System:: route("Cart","addToCart");
         break;
 
         case "sepet":
-             executeController("Cart","sepet");
+             System:: route("Cart","getCart");
         break;
 
-        case "sepetSil":
-             executeController("Cart","sepetSil");
+        case "sepettenUrunSil":
+             System:: route("Cart","removeProductFromCart");
         break;
 
         case "sepetTemizle":
-             executeController("Cart","sepetTemizle");
+             System:: route("Cart","clearCart");
         break;
 
         case "odemeTamamla":
-             executeController("Cart","odemeTamamla");
+             System:: route("Cart","completeThePayment");
         break;
         
         default:
-             executeController("Home","anasayfa");
+             System:: route("Home","get");
         break;
     }
 }
 
 else {
-        executeController("Home","anasayfa");
+        System:: route("Home","get");
 }
 
 ?>

@@ -1,79 +1,103 @@
 <?php 
+	
+	 include_once 'model/ProductModel.php';
+	 include_once 'model/CartModel.php';
+
 	 class CartController extends Controller{
 
-		 	public function sepetEkle(){
-	        $id=$_GET['id'];
+	 		private $productModel;
 
-	        $urunVarmi=false;
-	        $urunAdet="";
+	 		public function __construct(){
+	 			parent::__construct();
+	 			$this->model=new CartModel();
+	 			$this->productModel=new ProductModel(); 		
+	 		}
 
-	        if(!empty($_COOKIE['sepet'])){
-	             foreach (@$_COOKIE['sepet'] as $key => $value) {
-	                if($id==$key){
-	                    $urunVarmi=true;
-	                    $urunAdet=$value;
-	                } 
-	            }
-	        }
-	        
+		 	public function addToCart(){
 
+		        $id=$_GET['id'];
+		        $isProductExist=false;
 
-	        if($urunVarmi){
+		        if(!empty($_COOKIE['cart'])){
+		             foreach (@$_COOKIE['cart'] as $key => $value) {
+		                if($id==$key){
+		                    $isProductExist=true;
+		                    $productsCount=$value;
+		                } 
+		            }
+		        }
+		        
 
-	             $urunAdet++;       
-	             setcookie('sepet['.$id.']',"",time()-1); //cookie temizle 
-	             setcookie('sepet['.$id.']',$urunAdet,time()+60*60*24); //yeni adeti ver
+		        if($isProductExist){
 
-	        }else{
-	            setcookie('sepet['.$id.']',1,time()+60*60*24);
-	        }
-	        
+		             $productsCount++;   
+		             // wipe exist product from cart and incrase    
+		             setcookie('cart['.$id.']',"",time()-1);
+		             setcookie('cart['.$id.']',$productsCount,time()+60*60*24); 
 
-	         $this->geriDon();
+		        }else{
+		            setcookie('cart['.$id.']',1,time()+60*60*24);
+		        }
+		        
+
+		         $this->redirectBack();
 	    }
 
 
-	    public function sepet(){
-	        $urunler=array();
-	        $adetler=array();
-	        if(!empty($_COOKIE['sepet'])){
-	             foreach (@$_COOKIE['sepet'] as $key => $value) {
-	                $urunler[]=$this->model->getUrun($key);   
-	                $adetler[]=$value;
+	    public function getCart(){
+	        $products=array();
+	        $counts=array();
+	        if(!empty($_COOKIE['cart'])){
+	             foreach (@$_COOKIE['cart'] as $key => $value) {
+	                $products[]=$this->productModel->getUrun($key);   
+	                $counts[]=$value;
+	             
 	            }
 	        }
 	       
 	    
-	        $this->view->sayfa_goster("sepet.php",[$urunler,$adetler]);
+	        $this->view->getPage("cart.php",[$products,$counts]);
 	    }
 
-	    public  function sepetSil(){
+	    public  function removeProductFromCart(){
 	        $id=$_GET['id'];
-	        setcookie('sepet['.$id.']',"",time()-1); //cookie temizle 
+	        setcookie('cart['.$id.']',"",time()-1); //cookie temizle 
 	        
-	        $this->geriDon();
+	        $this->redirectBack();
 	        
 	    }
 
-	    public function sepetTemizle(){
+	    public function clearCart(){
 	       
-	         foreach ($_COOKIE['sepet'] as $key => $value) {
-	                setcookie('sepet['.$key.']',"",time()-1);
+	         foreach ($_COOKIE['cart'] as $key => $value) {
+	                setcookie('cart['.$key.']',"",time()-1);
 	            }
-	         $this->geriDon();
+	         $this->redirectBack();
 	    }
 
 
-	    public function odemeTamamla(){
+	    public function completeThePayment(){
+	    	
+	    	$cartLog="";
 
-	         foreach ($_COOKIE['sepet'] as $key => $value) {
-	            $sepetdeger.=$key.":".$value.",";      
+	         foreach ($_COOKIE['cart'] as $key => $value) {
+	            $cartLog.=$key.":".$value.",";      
 	         }     
 	    
-	        $urunfiltre=$this->model->odemeyiTamamla($sepetdeger);
+	        $this->model->completeThePayment($cartLog);
 	       
-	       $this->sepetTemizle();
-	       $this->geriDon();
+	       $this->clearCart();
+	       $this->redirectBack();
+	    }
+
+	    protected function getCartCount(){
+	    	$cartCounter=0;
+
+	    	foreach ($_COOKIE['cart'] as $value) {
+	            $cartCounter++;    
+	        }
+
+	        return $cartCounter;     
 	    }
 
 	}

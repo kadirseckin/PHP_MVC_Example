@@ -1,10 +1,28 @@
 <?php 
 
+	include_once 'model/ProductModel.php';
+	include_once 'model/CategoryModel.php';
+	
 	class HomeController extends Controller{
+
+		private $categoryModel;
+
+		public function __construct(){
+			parent::__construct();
+			$this->model=new ProductModel();
+			$this->categoryModel=new CategoryModel();
+		}
 		
-		 public function anasayfa(){
-	        $randomUrunler=$this->model->randomUrunler();
-	        $this->view->sayfa_goster("anasayfa.php",$randomUrunler);
+		 public function get(){
+	        $randomProducts=$this->model->randomProducts();
+	        $categories=array();
+
+	        foreach ($randomProducts as $product) {
+	        	$categories[] = $this->categoryModel->
+	        		getCategoryNameByCategoryID($product['marka_id']);
+	        }
+
+	        $this->view->getPage("home.php",[$randomProducts,$categories]);
 	    }
 	}
 

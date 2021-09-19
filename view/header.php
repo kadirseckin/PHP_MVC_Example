@@ -17,7 +17,8 @@
       </li>
 
       <li class="nav-item" style="margin-left: 50rem;">
-        <a class="nav-link" href="index.php?url=sepet">Sepetim</a>
+        <a class="nav-link" href="index.php?url=sepet">Sepetim 
+          <span id="cartCount">(0)</span></a>
       </li>
     
   </div>

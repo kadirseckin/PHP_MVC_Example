@@ -1,8 +1,9 @@
 <?php 
 	
-    include_once 'controller/controller.php';	
-  
-     function executeController($controllerName,$controllerFunction){
+  include_once 'controller/controller.php'; 
+
+  class System{
+      public static function route($controllerName,$controllerFunction){
         $controllerFile=$controllerName."Controller.php";
         $controllerClass=$controllerName."Controller";
 
@@ -10,4 +11,5 @@
         $controller=new $controllerClass();
         $controller->$controllerFunction();
     }
+  }
  ?>

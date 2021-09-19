@@ -8,17 +8,17 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Ad</th>
-      <th scope="col">Marka id</th>
+      <th scope="col">Marka</th>
       <th scope="col">Fiyat</th>
       <th scope="col">Sepete ekle</th>
     </tr>
   </thead>
   <tbody>
-     <?php foreach($veriler as $urun){ ?>
+     <?php foreach($data[0] as $urun){ ?>
     <tr>  
       <th><?php echo $urun['id']  ?></th>
       <td><?php echo $urun['ad']  ?></td>
-      <td><?php echo $urun['marka_id']  ?></td>
+      <td><?php echo $data[1]['ad'] ?></td>
       <td><?php echo $urun['fiyat']  ?></td>
       <td>
         <a href="index.php?url=sepetEkle&id=<?php echo $urun['id'] ?>">

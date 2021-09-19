@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-  	<?php foreach ($veriler as $marka) {
+  	<?php foreach ($data as $marka) {
   	 ?>
     <tr>
       <th><?php echo $marka['id']  ?></th>

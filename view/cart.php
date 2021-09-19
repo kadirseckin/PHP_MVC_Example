@@ -23,14 +23,14 @@
   </thead>
   <tbody>
   	<?php 
-      foreach($veriler[0] as $key =>$sepetUrun){
+      foreach($data[0] as $key =>$sepetUrun){
   	 ?>
     <tr>
       <td><?php echo $sepetUrun['ad']?></td>
       <td><?php echo $sepetUrun['fiyat']  ?></td>
-      <td><?php echo $veriler[1][$key] ?></td>
+      <td><?php echo $data[1][$key] ?></td>
       <td>
-        <a href="index.php?url=sepetSil&id=<?php echo $sepetUrun['id'] ?>">
+        <a href="index.php?url=sepettenUrunSil&id=<?php echo $sepetUrun['id'] ?>">
           <button class="btn btn-danger">Sil</button>
         </a>
       </td>
