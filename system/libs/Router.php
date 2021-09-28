@@ -1,59 +1,30 @@
 <?php 
 class Router{
 
-	public function __construct(){
+	public function __construct($routes){
 		$url = @$_GET["url"];
+		$this->route($url,$routes);	
+	}
 
+	private function route($url,$routes){
 		if (!empty($url)) {
-		    switch ($url) {
-		        case "home":
-		             $this->route("Home","get");
-		        break;
-		        case "products":
-		             $this->route("Product","getProducts");
-		        break;
-
-		        case "productsByCategory":
-		             $this->route("Product","getProductsByCategory");
-		        break;
-
-		        case "categories":
-		            $this-> route("Category","getCategories");
-		        break;
-
-		        case "addToCart":
-		             $this-> route("Cart","addToCart");
-		        break;
-
-		        case "cart":
-		             $this-> route("Cart","getCart");
-		        break;
-
-		        case "removeFromCart":
-		             $this-> route("Cart","removeProductFromCart");
-		        break;
-
-		        case "clearCart":
-		             $this-> route("Cart","clearCart");
-		        break;
-
-		        case "completePayment":
-		             $this-> route("Cart","completeThePayment");
-		        break;
-		        
-		        default:
-		             $this-> route("Home","get");
-		        break;
-		    }
+		       foreach ($routes as $key => $value) {
+		       		if($value[0]==$url){
+		       			$this->run($value[1],$value[2]);
+		       			break;
+		       		}else if($value[0]!==$url && count($routes)==($key+1)){
+		       			$this->run("Home","pageNotFound"); //if url is not exists
+		       		}
+		       }
 		}
 
 		else {
-		        $this-> route("Home","get");
+		        $this-> run("Home","get"); //if url is empty
 		}
 	}
 
 
-	private function route($controllerName,$controllerFunction){
+	private function run($controllerName,$controllerFunction){
         $controllerFile=$controllerName."Controller.php";
         $controllerClass=$controllerName."Controller";
 

@@ -32,8 +32,10 @@ class Database extends PDO{
 
 		if($sth->rowCount()>1){
 			return $sth->fetchAll(PDO::FETCH_ASSOC);
-		}else{
+		}else if($sth->rowCount()==1){
 			return $sth->fetch(PDO::FETCH_ASSOC);
+		}else{
+			return array();
 		}	
 	}
 

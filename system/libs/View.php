@@ -8,7 +8,11 @@ class View{
         include_once 'app/view/header.php';
         include_once 'app/view/'.$src;
         include_once 'app/view/footer.php';
-  }
+   }
+
+   public function getErrorPage($src){
+        include_once 'app/view/'.$src;
+   }
 }
 
 ?>

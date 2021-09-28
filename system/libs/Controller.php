@@ -12,7 +12,10 @@ class Controller{
         $url=$_SERVER['HTTP_REFERER'];
         header("Location:$url");
     }
- 
+
+    public function pageNotFound(){
+        $this->view->getErrorPage("pageNotFound.php");
+    } 
 }
 
 ?>
