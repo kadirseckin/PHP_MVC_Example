@@ -1,20 +1,18 @@
 <?php 
 	
-	include_once 'model/ProductModel.php';
-	include_once 'model/CategoryModel.php';
-
 	class ProductController extends Controller{
 
 		private $categoryModel;
+		private $productModel;
 
 		public function __construct(){
 			parent::__construct();
-			$this->model=new ProductModel();
+			$this->productModel=new ProductModel();
 			$this->categoryModel=new CategoryModel();
 		}
 		
 		public function getProducts(){     
-	        $products=$this->model->getProducts();
+	        $products=$this->productModel->getProducts();
 	        $categories=array();
 
 	        foreach ($products as $product) {
@@ -26,7 +24,7 @@
 	    }   
 
 		public function getProductsByCategory(){     
-	        $products=$this->model->getProductsByCategory($_GET['id']);
+	        $products=$this->productModel->getProductsByCategory($_GET['id']);
 	        $categories=$this->categoryModel->getCategoryNameByCategoryID($_GET['id']);
 	        $this->view->getPage("productsByCategory.php",[$products,$categories]);
 	    }

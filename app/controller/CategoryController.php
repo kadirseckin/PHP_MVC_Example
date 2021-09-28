@@ -1,16 +1,16 @@
 <?php 
     
-    include_once 'model/CategoryModel.php';
-
 	class CategoryController extends Controller{
         
+        private $categoryModel;
+
         public function __construct(){
             parent::__construct();
-            $this->model=new CategoryModel();
+            $this->categoryModel=new CategoryModel();
         }    
 
         public function getCategories(){     
-            $categories=$this->model->getCategories();
+            $categories=$this->categoryModel->getCategories();
             $this->view->getPage("categories.php",$categories);
         }
     }

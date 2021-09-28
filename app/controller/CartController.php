@@ -1,15 +1,13 @@
 <?php 
 	
-	 include_once 'model/ProductModel.php';
-	 include_once 'model/CartModel.php';
-
 	 class CartController extends Controller{
 
 	 		private $productModel;
+	 		private $cartModel;
 
 	 		public function __construct(){
 	 			parent::__construct();
-	 			$this->model=new CartModel();
+	 			$this->cartModel=new CartModel();
 	 			$this->productModel=new ProductModel(); 		
 	 		}
 
@@ -85,7 +83,7 @@
 	            	$cartLog.=$key.":".$value.",";      
 	        	}     
 	    
-		       $this->model->completeThePayment($cartLog,self::getTotalPrice());
+		       $this->cartModel->completeThePayment($cartLog,self::getTotalPrice());
 		       $this->clearCart();
 	    	}
 

@@ -1,20 +1,18 @@
 <?php 
-
-	include_once 'model/ProductModel.php';
-	include_once 'model/CategoryModel.php';
 	
 	class HomeController extends Controller{
 
 		private $categoryModel;
+		private $productModel;
 
 		public function __construct(){
 			parent::__construct();
-			$this->model=new ProductModel();
+			$this->productModel=new ProductModel();
 			$this->categoryModel=new CategoryModel();
 		}
 		
 		 public function get(){
-	        $randomProducts=$this->model->randomProducts();
+	        $randomProducts=$this->productModel->randomProducts();
 	        $categories=array();
 
 	        foreach ($randomProducts as $product) {
