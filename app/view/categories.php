@@ -6,7 +6,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Related Products</th>
   
@@ -16,7 +15,6 @@
   	<?php foreach ($data as $category) {
   	 ?>
     <tr>
-      <th><?php echo $category['id']  ?></th>
       <td><?php echo $category['name']  ?> </td>
        <td>
         <a href="index.php?url=productsByCategory&id=<?php echo $category['id'] ?>">

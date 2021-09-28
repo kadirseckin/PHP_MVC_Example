@@ -19,7 +19,7 @@
 
       <li class="nav-item" style="margin-left: 50rem;">
         <a class="nav-link" href="index.php?url=cart">Cart 
-          (<span id="cartCountSpan"><?php echo Controller::getCartCount() ?></span>)</a>
+          (<span id="cartCountSpan"><?php echo CartController::getCartCount() ?></span>)</a>
       </li>
     
   </div>

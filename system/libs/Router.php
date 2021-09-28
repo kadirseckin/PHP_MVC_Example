@@ -5,7 +5,6 @@ class Router{
 		$url = @$_GET["url"];
 
 		if (!empty($url)) {
-		     
 		    switch ($url) {
 		        case "home":
 		             $this->route("Home","get");

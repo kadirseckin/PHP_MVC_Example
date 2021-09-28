@@ -6,7 +6,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Category</th>
       <th scope="col">Price</th>
@@ -16,7 +15,6 @@
   <tbody>
      <?php foreach($data[0] as $product){ ?>
     <tr>  
-      <th><?php echo $product['id']  ?></th>
       <td><?php echo $product['name']  ?></td>
       <td><?php echo $data[1]['name'] ?></td>
       <td><?php echo "$".$product['price']  ?></td>

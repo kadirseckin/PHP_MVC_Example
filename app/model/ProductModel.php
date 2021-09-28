@@ -3,31 +3,34 @@
 	class ProductModel extends Model{
 	
 		 public function getProducts(){
-	
-			$query=$this->db->prepare("SELECT * FROM products");
-			$query->execute();
-			return $query->fetchAll(PDO::FETCH_ASSOC);
-		}
+			return $this->db->select(
+				tableName:"products"
+			);
+		 }
 
 		 public function randomProducts(){
 			
-			$query=$this->db->prepare("SELECT * FROM products order by rand() limit 10");
-			$query->execute();
-			return $query->fetchAll(PDO::FETCH_ASSOC);
+			return $this->db->select(
+				tableName:"products",
+				orderBy:"rand()",
+				limit:"10"
+			);
 		}
 
 		 public function getProductsByCategory($id){
-			
-			$query=$this->db->prepare("SELECT * FROM products where category_id=$id");
-			$query->execute();
-			return $query->fetchAll(PDO::FETCH_ASSOC);
+		
+			return $this->db->select(
+				tableName:"products",
+				where:['category_id'=>$id]
+			);
 		}
 
 		 public function getProductByID($id){
 			
-			$query=$this->db->prepare("SELECT * FROM products where id=$id");
-			$query->execute();
-			return $query->fetch(PDO::FETCH_ASSOC);
+			return $this->db->select(
+				tableName:"products",
+				where:['id'=>$id]
+			);
 		}
 	}
 
