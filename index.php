@@ -17,6 +17,4 @@
      spl_autoload_register('loadLibraries');
      spl_autoload_register('loadModals');
      new Router();
-
 ?>
-
